@@ -1,0 +1,148 @@
+import time
+def V(A,B):
+    result_1 = A / B
+    return result_1
+
+def Distance(A,D):
+    result_2 = A * D
+    return result_2
+
+def Temps(A,Z):
+    result_3 = A / Z
+    return result_3
+
+def KILO(result_D):
+    result_k = result_D / 1000
+    return result_k
+
+def kmh_ms(ms):
+    result_ms = ms / 3.6
+    return result_ms
+
+def tps_depuis_kmh(V_km, M_km):
+    result_38 = M_km / V_km
+    return result_38
+
+menue = True
+
+while menue:
+    answer = input('1/Voulez-vous calculer une vitesse ?\n2/Voulez-vous calculer une distance ?\n3/Voulez-vous calculer une durée / un temps ?\n'
+                   '4/Voulez-vous convertir une vitesse en km/h en m/s ?\n5/Ou bien quitter le menu ?\n>')
+    if answer == '1':
+        A = int(input('Quel est votre distance (en mètres) ?\n>'))
+        B = int(input('Quelle est la durée du trajet (en secondes) ?\n>'))
+        result_V = V(A,B)
+        print('Votre vitesse est de : {} m/s'.format(result_V))
+        kmH = input('Voulez-vous convertir cette vitesse en km/h ? (1) ?\n>')
+        if kmH == '1':
+            answer_speed = result_V * 3.6
+            print('Votre vitesse est de : {} km/h'.format(answer_speed))
+
+    if answer == '2':
+        #Z = int(input('Quel est votre vitesse (en mètres par secondes) ?\n>'))
+        Z = int(input('Votre vitesse est en km/h ?\n>') )
+        #time.sleep(5)
+        D = int(input('Quelle est la durée du trajet (en secondes) ?\n>'))
+        result_D = Distance(Z,D)
+        Distance_result = print('Voici votre distance : {} (en mètres)'.format(result_D))
+        kilometer = input('Voulez-vous convertir cette distance en kilomètres ? (1)\n>')
+        if kilometer == '1':
+            answer_kilometer = KILO(result_D)
+            Kilometer_result = print('Voici votre distance convertie en kilomètre(s) : {}'.format(answer_kilometer))
+
+    if answer == '3':
+        bonjour = input('Est-ce que votre vitesse est en km/h ? Si oui, tapez Oui, si non, tapez Non.\n>')
+        #time.sleep(3)
+        if bonjour == 'Oui':
+            V_km = int(input('Quelle est votre vitesse (en km/H) ?\n>'))
+            M_km = int(input('Quelle est votre distance (en mètres) ?\n>')) # il faut que ça calcule ça et pas le truc de base, que ça oublie la variable Z
+            answer_38 = tps_depuis_kmh(M_km,V_km)
+            print('Le temps / durée du trajet est de : {} heure(s)'.format(answer_38))
+            t_h = input('Voulez-vous convertir ces heures en minutes (1) , en jours (2), en année(s) (3) ou quitter le menu (4) ?\n>')
+            if t_h == '1':
+                answer_39 = answer_38 * 60
+                answer_39 == answer_39 % 60
+                print('Le temps / durée du trajet est de : {} minute(s)'.format(answer_39))
+            if t_h == '2':
+                answer_40 = answer_38 * 24 # faire quelque chose car si les secondes sont négatives le résultat en j sera plus grand
+                print('Le temps / durée du trajet est de : {} jour(s)'.format(answer_40))
+            if t_h == '3':
+                result_29 = answer_38 / 3600
+                result_30 = result_29 / 31557600
+                print('Voici le temps / durée du trajet est de : {} année(s) '.format(result_30))
+            if t_h == '4':
+                menue = False
+        else:
+            Z = int(input(
+                'Quelle est votre vitesse en m/s ?\n>'))
+            A = int(input('Quelle est votre distance (en mètres) ?\n>'))
+            result_T = Temps(A,Z)
+            print('Le temps / durée du trajet est de : {} seconde(s)'.format(result_T))
+            minutes = input('Voulez-vous convertir ces secondes en minutes (1), en heures (2), en jours (3), en année(s)  (4) ou quitter le menu (5) ?\n>')
+            #answer_time = Temps(A,Z)
+
+            if minutes == '1':
+                answer_minutes = result_T / 60
+                answer_minutes == answer_minutes % 60   #modulo 60 pour ne pas avoir 9.64 minutes
+                print('Le temps / durée du trajet est de : {} minute(s)'.format(answer_minutes))
+                question_time_2 = input(
+                'Voulez-vous convertir ces minutes en heures (1), en jours (2), en année(s)  (3) ou quitter le menu (4) ?\n>')
+
+                if question_time_2 == '1':
+                    answer_hours_2 = answer_minutes / 60
+                    print('Voici le temps / durée du trajet est de : {} heure(s)'.format(answer_hours_2))
+                    question_time_3 = input(
+                    'Voulez-vous convertir ces heures en jours (1) ou quitter le menu (2) ?\n>')
+
+                    if question_time_3 == '1':
+                        answer_days_days2 =  answer_hours_2 / 24
+                        print('Le temps / durée du trajet est de : {} jour(s)'.format(answer_days_days2))
+
+                    if question_time_3 == '2':
+                        menue = False
+
+                if question_time_2 == '2':
+                    answer_days_2 = answer_hours_2 / 24
+                    print('Le temps / durée du trajet est de : {} jour(s)'.format(answer_days_2))
+
+                if question_time_2 == '3':
+                    result_al2 = answer_minutes / 60
+                    result_al3 = result_al2 / 31557600
+                    print('Voici le temps / durée du trajet est de : {} année(s) '.format(result_al3))
+
+                if question_time_2 == '4':
+                    menue = False
+
+            if minutes == '2':
+                answer_hours = result_T / 3600
+                print('Le temps / durée du trajet est de : {} heure(s)'.format(answer_hours))
+                question_time_4 = input(
+                    'Voulez-vous convertir ces heures en jours (1) ou quitter le menu (2) ?\n>')
+
+                if question_time_4 == '1':
+                    answer_days_3 = answer_hours / 24
+                    print('Le temps / durée du trajet est de : {} jour(s)'.format(answer_days_3))
+
+                if question_time_4 == '2':
+                    menue = False
+
+                else:
+                    print('Réponse inexistante dans le menu, désolé.')
+
+            if minutes == '3':
+                answer_days = result_T / 24
+                print('Voici le temps / durée du trajet est de : {} jour(s)'.format(answer_days))
+
+            if minutes == '4':
+                result_al = result_T / 31557600
+                print('Voici le temps / durée du trajet est de : {} année(s) '.format(result_al))
+
+            if minutes == '5':
+                menue = False
+
+    if answer == '4':
+        ms = int(input('Quelle est votre vitesse en km/h à convertir en mètres par seconde ?\n>'))
+        print('Voici votre vitesse transformée en mètres par seconde : {}'.format(kmh_ms(ms)))
+
+    if answer == '5':
+        menue = False
